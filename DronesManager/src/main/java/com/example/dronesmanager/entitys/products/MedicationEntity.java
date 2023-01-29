@@ -1,6 +1,6 @@
 package com.example.dronesmanager.entitys.products;
 
-import com.example.dronesmanager.entitys.Drone;
+import com.example.dronesmanager.entitys.DroneEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Medication {
+public class MedicationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -28,6 +28,6 @@ public class Medication {
 
     @ManyToOne
     @JoinColumn(name = "drones_id")
-    private Drone drone;
+    private DroneEntity drone;
 
 }

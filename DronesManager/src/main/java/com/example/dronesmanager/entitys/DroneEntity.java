@@ -1,6 +1,6 @@
 package com.example.dronesmanager.entitys;
 
-import com.example.dronesmanager.entitys.products.Medication;
+import com.example.dronesmanager.entitys.products.MedicationEntity;
 import com.example.dronesmanager.enums.DronesModel;
 import com.example.dronesmanager.enums.DronesState;
 import lombok.*;
@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Drone {
+public class DroneEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,13 +34,13 @@ public class Drone {
     private Double weightLimit;
 
     @Column(nullable = false)
-    private Double battery_percent;
+    private Double batteryPercent;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private DronesState state;
 
     @OneToMany(mappedBy = "drone")
-    private List<Medication> medications = new ArrayList<>();
+    private List<MedicationEntity> medications = new ArrayList<>();
 
 }
