@@ -4,6 +4,8 @@ import com.example.dronesmanager.entitys.products.MedicationEntity;
 import com.example.dronesmanager.enums.DronesModel;
 import com.example.dronesmanager.enums.DronesState;
 import lombok.*;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,20 +22,21 @@ import java.util.UUID;
 public class DroneEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, unique = true, length = 100, name = "serialnumber")
     private String serialNumber;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "model")
     @Enumerated(EnumType.STRING)
     private DronesModel model;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "weightlimit")
     private Double weightLimit;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "battery_percent")
+    @Audited
     private Double batteryPercent;
 
     @Column(nullable = false)
