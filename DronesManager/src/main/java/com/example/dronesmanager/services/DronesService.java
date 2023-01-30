@@ -7,6 +7,7 @@ import com.example.dronesmanager.dto.requests.SearchDronesRequest;
 import com.example.dronesmanager.entitys.DroneEntity;
 import com.example.dronesmanager.entitys.products.MedicationEntity;
 import com.example.dronesmanager.enums.DronesState;
+import com.example.dronesmanager.exceptions.BusinessException;
 import com.example.dronesmanager.mappers.DronesMapper;
 import com.example.dronesmanager.repositorys.DroneEntityRepository;
 import com.example.dronesmanager.repositorys.MedicationEntityRepository;
@@ -44,23 +45,24 @@ public class DronesService {
                                 .serialNumbers(Collections.singletonList(request.getSerialNumber()))
                                 .build().getSearchDronesByParametersSpecification()
                 ).isEmpty()
-        ) throw new RuntimeException("A drone with this serial number is already registered in the system");
+        ) throw new BusinessException("A drone with this serial number is already registered in the system");
 
-        return DronesMapper.droneEntityToDto(droneRepository.save(DronesMapper.registryRequestToDroneEntity(request, null)));
+        return DronesMapper.droneEntityToDto(droneRepository.saveAndFlush(DronesMapper.registryRequestToDroneEntity(request, null)));
     }
 
     @Transactional
     public Drone loadDroneWithMedications(UUID droneId, List<UUID> medicationsIds) {
         DroneEntity entity = droneRepository.findById(droneId).orElseThrow(
-                () -> new RuntimeException("There is no drone with this id in the system")
+                () -> new BusinessException("There is no drone with this id in the system")
         );
         List<MedicationEntity> medications = medicationRepository.findAllById(medicationsIds);
         List<UUID> unfoundedIds = medicationsIds
                 .stream().filter(it -> medications.stream().anyMatch(medication -> medication.getId() == it)).collect(Collectors.toList());
         if (!unfoundedIds.isEmpty())
-            throw new RuntimeException("There is no medications with id: " + unfoundedIds);
+            throw new BusinessException("There is no medications with id: " + unfoundedIds);
         entity.setMedications(medications);
-        return DronesMapper.droneEntityToDto(droneRepository.save(entity));
+        entity.setState(entity.getState().getNext());
+        return DronesMapper.droneEntityToDto(droneRepository.saveAndFlush(entity));
     }
 
     @Transactional(readOnly = true)
@@ -76,7 +78,7 @@ public class DronesService {
     @Transactional(readOnly = true)
     public Double getDroneBatteryPercent(UUID droneId) {
         return droneRepository.findById(droneId)
-                .orElseThrow(() -> new RuntimeException("There is no drone with id: " + droneId))
+                .orElseThrow(() -> new BusinessException("There is no drone with id: " + droneId))
                 .getBatteryPercent();
     }
 }

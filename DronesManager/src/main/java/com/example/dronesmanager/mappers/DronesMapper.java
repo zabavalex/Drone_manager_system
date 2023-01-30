@@ -31,7 +31,13 @@ public final class DronesMapper {
                 .model(entity.getModel())
                 .serialNumber(entity.getSerialNumber())
                 .state(entity.getState())
-                .medications(entity.getMedications().stream().map(MedicationsMapper::medicationEntityToDto).collect(Collectors.toList()))
+                .medications(
+                        entity.getMedications() != null
+                                ? entity.getMedications().stream()
+                                .map(MedicationsMapper::medicationEntityToDto)
+                                .collect(Collectors.toList())
+                                : null
+                )
                 .build();
     }
 

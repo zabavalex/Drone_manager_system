@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder(toBuilder = true)
 public class MedicationEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false)

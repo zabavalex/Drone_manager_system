@@ -9,10 +9,23 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
-@Data
 public class LoadDroneWithMedicationsRequest {
-    @NotNull(message = "The drone id cannot be empty")
-    private final UUID droneId;
     @NotEmpty(message = "The medications list cannot be empty")
-    private final List<@NotNull(message = "The medication cannot be empty") UUID> medications;
+    private List<@NotNull(message = "The medication cannot be empty") UUID> medications;
+
+    public List<UUID> getMedications() {
+        return medications;
+    }
+
+
+    public LoadDroneWithMedicationsRequest() {
+    }
+
+    public LoadDroneWithMedicationsRequest(List<@NotNull(message = "The medication cannot be empty") UUID> medications) {
+        this.medications = medications;
+    }
+
+    public void setMedications(List<UUID> medications) {
+        this.medications = medications;
+    }
 }

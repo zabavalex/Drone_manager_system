@@ -2,6 +2,7 @@ package com.example.dronesmanager.controllers;
 
 import com.example.dronesmanager.dto.Drone;
 import com.example.dronesmanager.dto.Medication;
+import com.example.dronesmanager.dto.requests.LoadDroneWithMedicationsRequest;
 import com.example.dronesmanager.dto.requests.RegistryDroneRequest;
 import com.example.dronesmanager.dto.requests.SearchDronesRequest;
 import com.example.dronesmanager.services.DronesService;
@@ -30,10 +31,11 @@ public class DronesController {
     @PostMapping("/{id}/load")
     public Drone loadDroneWithMedication(
             @PathVariable UUID id,
-            @NotEmpty(message = "The medications list cannot be empty")
-            List<@NotNull(message = "The medication cannot be empty") UUID> medications
+            @RequestBody
+            @NotNull(message = "The medications list cannot be empty")
+            LoadDroneWithMedicationsRequest request
     ) {
-        return dronesService.loadDroneWithMedications(id, medications);
+        return dronesService.loadDroneWithMedications(id, request.getMedications());
     }
 
     @PostMapping("/")
