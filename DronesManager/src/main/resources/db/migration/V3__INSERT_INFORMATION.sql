@@ -20,22 +20,22 @@ INSERT INTO drones (id, serialNumber, model, weightLimit, battery_percent, state
 VALUES ('a817135b-cebb-467c-a09a-7291945bd018', '10', 'LIGHTWEIGHT', 125, 100, 'IDLE');
 
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f6d7', '1', 0, '1');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f6d7', '1', 100, '1');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f6d8', '2', 0, '2');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f6d8', '2', 200, '2');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f6d9', '3', 0, '3');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f6d9', '3', 300, '3');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f610', '4', 0, '4');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f610', '4', 400, '4');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f611', '5', 0, '5');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f611', '5', 500, '5');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f612', '6', 0, '6');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f612', '6', 500, '6');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f613', '7', 0, '7');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f613', '7', 250, '7');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f614', '8', 0, '8');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f614', '8', 350, '8');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f615', '9', 0, '9');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f615', '9', 350, '9');
 INSERT INTO medications (id, name, weight, code)
-VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f616', '10', 0, '10');
+VALUES ('d8b2629f-aaed-4572-b128-4873a0c1f616', '10', 150, '10');

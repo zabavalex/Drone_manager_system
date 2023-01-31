@@ -10,7 +10,7 @@ public final class MedicationsMapper {
                 .id(entity.getId())
                 .code(entity.getCode())
                 .name(entity.getName())
-                .droneId(entity.getDrone().getId())
+                .droneId(entity.getDrone() != null ? entity.getDrone().getId() : null)
                 .image(entity.getImage())
                 .build();
     }

@@ -22,7 +22,7 @@ import java.util.UUID;
 public class DroneEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false, unique = true, length = 100, name = "serialnumber")
